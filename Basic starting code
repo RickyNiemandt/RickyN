@@ -1,0 +1,128 @@
+# Basic Math
+
+2 + 1
+
+2 - 1
+
+2 * 2
+
+3 / 2
+
+#Hello World - Start to my programming life
+
+print("Hello World")
+
+x = 1.6
+
+type(x)
+
+print("My dog's name is Benny".lower())
+
+dog_name = "Benny"
+
+print(dog_name)
+
+print(f"My dog's name {dog_name}")
+
+MyAge = 24
+
+MyName = "Ricky"
+
+MyLastName = "Niemandt"
+
+print(f"Helle my name is {MyName}{MyLastName} and i am {MyAge} years old")
+
+
+def SayHello():
+    print("Hello")
+
+SayHello()
+
+#Start to list and calling items from the list
+
+pizza_toppings = ["cheese", "Pepperoni"]
+
+print(pizza_toppings[0])
+
+pizza_toppings.append("Pineapple")
+
+print(pizza_toppings)
+
+pizza_toppings.remove("Pineapple")
+
+# for if with boolean
+
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+number_greater_than_five = []
+
+for i in numbers:
+    if i > 5:
+        number_greater_than_five.append(i)
+
+print(number_greater_than_five)
+
+a = "foo"
+b = "bar"
+a == b
+
+# Pizza List with making a Menu
+
+pizza_toppings = ["cheese", "perrperoni"]
+print("We have the following toppings:")
+for topping in pizza_toppings:
+    if topping == "cheese":
+        print(f"{topping} (free)")
+    else:
+        print(f"{topping} ($1.00)")
+
+pizza_topping = ["cheese", "pepperoni"]
+
+
+def format_topping(topping):
+    if topping == "cheese":
+        return f"{topping.title()} (Free)"
+    else:
+        return f"{topping.title()} ($1)"
+
+
+def print_menu(toppings):
+    print("Welcome to Ricky's Pizzaria")
+    print("Our available toppings are:")
+    for topping in toppings:
+        print(format_topping(topping))
+print_menu(pizza_topping)
+
+
+
+# Start to Turtle and dawing a Pizza
+
+import turtle
+
+screen = turtle.Screen()
+screen.bgcolor("blue")
+screen.title("Drawning line Practice")
+
+my_turtle = turtle.Turtle()
+my_turtle.pensize(5)
+my_turtle.shape("circle")
+my_turtle.forward(100)
+
+for x in range(0, 8):
+    my_turtle.forward(100)
+    my_turtle.backward(100)
+    my_turtle.left(45)
+
+turtle.done()
+
+screen = turtle.Screen()
+screen.bgcolor("blue")
+screen.title("Drawing Circles Practice")
+
+my_turtle = turtle.Turtle()
+my_turtle.pensize(5)
+my_turtle.color("green")
+my_turtle.fillcolor("red")
+my_turtle.begin_fill()
+my_turtle.circle(100)
+
+turtle.done()
