@@ -1,0 +1,47 @@
+:root {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: #1a1a1a;
+  background: #f5f6f8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.tv-shell {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.tv-header {
+  border-bottom: 1px solid #e0e2e7;
+  padding-bottom: 12px;
+  margin-bottom: 24px;
+}
+
+.tv-brand {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.tv-sub {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.tv-card {
+  background: #fff;
+  border: 1px solid #e0e2e7;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+button {
+  cursor: pointer;
+}
