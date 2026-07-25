@@ -1,0 +1,16 @@
+rules_version = '2';
+
+// ============================================================
+// Tender Vault — Cloud Storage security rules
+// ============================================================
+// SCAFFOLD PLACEHOLDER: default-deny.
+// Real rules scope every path to companies/{companyId}/... and require
+// request.auth.token.companyId == companyId. Implemented in the
+// "schema + rules" chunk once the security model is confirmed.
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+rules_version = '2';
+
+// ============================================================
+// Tender Vault — Firestore security rules
+// ============================================================
+// SCAFFOLD PLACEHOLDER: default-deny.
+// The real tenant-scoped rules (request.auth.token.companyId == companyId,
+// server-side RBAC, append-only auditLog, etc.) are implemented in the
+// "schema + rules" chunk once the security model is confirmed.
+// Default-deny is the safe least-privilege baseline until then.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
