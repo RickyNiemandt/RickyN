@@ -1,5 +1,22 @@
 # AGENTS.md
 
+## Project category context (Charm Systems)
+
+Charm Systems builds automated process / SaaS platforms — Tender Vault is one instance of
+this category. Keep the **Charm Systems** name and branding throughout the app, code, and
+public-facing copy; there is no need to genericize or hide it. This is a framing note, not
+a rebranding instruction — Tender Vault stays Tender Vault, Charm Systems stays Charm
+Systems, in all naming and copy.
+
+Treat this project (and future ones under Charm Systems) as belonging to the "automated
+process SaaS" category by default, and apply these general instincts:
+- Server-side automation (Cloud Functions) is the source of truth — never client-only
+  logic for anything that drives a business process.
+- Prefer structured, auditable data flows (documents, requirements, statuses) over one-off
+  scripts.
+- Treat every workflow as something a real business will depend on operationally, not a
+  one-off demo.
+
 ## Cursor Cloud specific instructions
 
 ### What this repo is
