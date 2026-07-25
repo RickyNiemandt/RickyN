@@ -20,16 +20,39 @@ process SaaS" category by default, and apply these general instincts:
 ## Cursor Cloud specific instructions
 
 ### What this repo is
-This repository is a single Python learning scratchpad file, `Basic starting code` (no
-file extension). It is a flat concatenation of beginner exercises: basic math, `print`
-statements, f-strings, a `SayHello()` function, list/loop/boolean examples, a "pizza
-menu" example, and a `turtle` graphics section that draws a star/line pattern and a
-filled circle.
+The primary project is the **Charm Systems creative-side web app** — a Next.js (App
+Router) front-end in JavaScript/JSX styled with Tailwind CSS. Key pieces:
+- `app/` — routes. `app/page.jsx` is the creative home; `app/marketing/page.jsx` is the
+  creative packages / pricing page (tiers Basic R2,950, Growth R6,950, Premium R28,500).
+- `components/` — client components: `LenisProvider` (smooth scroll), `PageTransition`
+  (Framer Motion `AnimatePresence` route transitions), `BackgroundMesh` (animated
+  green/purple gradient mesh), `MagneticButton` (magnetic-hover CTA), `PricingCard`, `Nav`.
+- Brand palette + glassmorphism tokens live in `tailwind.config.js` and `app/globals.css`.
+- `lib/packages.js` — the fixed pricing tiers data.
 
-There is no product, server, database, package manager, or build system, and there are
-no tests, linters, or CI configured. Nothing to lint, test, or build.
+The repo also still contains a legacy Python learning scratchpad, `Basic starting code`
+(no extension); see the end of this section for how to run it.
 
-### Running it
+### Running the web app (primary)
+Standard Next.js scripts (see `package.json`): `npm run dev` (dev server on port 3000),
+`npm run build`, `npm run start`, `npm run lint`.
+
+Non-obvious caveats for the web app:
+- Run `npm run dev` and browse `http://localhost:3000` (home) and
+  `http://localhost:3000/marketing`. Chrome + display are available at `DISPLAY=:1` for
+  manual GUI testing.
+- Dependencies are pinned to a **Next.js 14.2.x** line (App Router, React 18) and
+  **Tailwind CSS v3** (classic `tailwind.config.js` + `postcss.config.mjs`). Do not assume
+  Tailwind v4 CSS-config conventions here.
+- `@studio-freight/lenis` is installed per spec; npm warns it's renamed to `lenis`. The
+  import path `@studio-freight/lenis` still works — ignore the deprecation warning unless
+  intentionally migrating.
+- Smooth scroll, magnetic hover, and route transitions are client-only (`"use client"`).
+  `LenisProvider`/`MagneticButton` gate touch vs. fine-pointer behavior and respect
+  `prefers-reduced-motion`; animations use GPU transforms (`translate3d`/`scale`) for
+  60fps on tablet/mobile. Layout is verified responsive on desktop, iPad, and phone.
+
+### Running the legacy Python scratchpad
 ```bash
 DISPLAY=:1 python3 -u "Basic starting code"
 ```
