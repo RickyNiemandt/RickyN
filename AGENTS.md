@@ -17,3 +17,15 @@ step, test suite, or lint config.
   to render the turtle windows; for console-only output, pipe/inspect stdout before
   the first turtle window opens (use `python3 -u` to avoid buffering) since the
   process blocks on `turtle.done()`.
+
+### Node / Firebase tooling
+
+- Node.js and npm are preinstalled (npm is managed by nvm; the active `node` global
+  prefix is root-owned, so global installs need `sudo`). The `firebase` CLI is
+  installed globally by the update script (`firebase-tools`).
+- On this VM, `sudo` does not inherit npm/node on PATH, so global installs must
+  preserve it: `sudo env "PATH=$PATH" npm install -g <pkg>`.
+- Firebase commands beyond `firebase --version`/`--help` (e.g. `projects:list`,
+  `deploy`, `init`) require authentication via `firebase login` (or a
+  `FIREBASE_TOKEN`/service-account credential); without it they fail with an auth
+  error.
