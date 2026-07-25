@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --canvas: #000000;
+  --accent: #00ff66;
+  --highlight: #8b5cf6;
+  --heading: #ffffff;
+  --body: #9ca3af;
+}
+
+@layer base {
+  html {
+    /* Lenis controls smooth scrolling; keep native smooth off to avoid conflicts */
+    scroll-behavior: auto;
+  }
+
+  body {
+    background-color: var(--canvas);
+    color: var(--body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* Prevent horizontal jumps from drifting background mesh on touch devices */
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--heading);
+  }
+
+  /* Lenis recommended styles */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+}
+
+@layer components {
+  /* Glassmorphism base per design system */
+  .glass {
+    @apply border border-white/10 bg-white/5 backdrop-blur-md;
+  }
+
+  .glass-card {
+    @apply glass rounded-2xl transition-transform duration-300 will-change-transform;
+  }
+
+  .btn-accent {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3
+      font-semibold text-black shadow-accent-glow transition-colors duration-200
+      will-change-transform hover:bg-accent-hover;
+  }
+
+  .trust-badge {
+    @apply inline-flex items-center gap-2 rounded-full border border-highlight/40
+      bg-highlight/10 px-4 py-1.5 text-sm text-white shadow-purple-glow;
+  }
+}
+
+@layer utilities {
+  /* Force GPU-accelerated compositing for smooth 60fps on mobile/tablet */
+  .gpu {
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-accent via-white to-highlight bg-clip-text text-transparent;
+  }
+}
