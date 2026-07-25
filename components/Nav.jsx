@@ -7,6 +7,7 @@ import { Zap } from "lucide-react";
 const links = [
   { href: "/", label: "Home" },
   { href: "/marketing", label: "Packages" },
+  { href: "/tools", label: "Tools" },
 ];
 
 export default function Nav() {
