@@ -2,10 +2,8 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
-import { getFunctions } from 'firebase/functions';
+import { getFunctions, httpsCallable } from 'firebase/functions';
 
-// All config comes from environment variables (Vite injects VITE_* at build
-// time). No secrets are hardcoded. Missing values fail loudly in dev.
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -20,7 +18,6 @@ const missing = Object.entries(firebaseConfig)
   .map(([k]) => k);
 
 if (missing.length > 0) {
-  // Surface configuration gaps rather than silently starting misconfigured.
   console.warn(
     `[Tender Vault] Missing Firebase config values: ${missing.join(', ')}. ` +
       'Populate frontend/.env.local from frontend/.env.example.',
@@ -32,3 +29,17 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
 export const functions = getFunctions(app);
+
+// ── Callable Cloud Functions ───────────────────────────────────
+
+const call = (name) => (data) => httpsCallable(functions, name)(data);
+
+export const callProvisionCompany  = call('provisionCompany');
+export const callAddUser           = call('addUser');
+export const callRegisterVaultDoc  = call('registerVaultDoc');
+export const callDeleteVaultDoc    = call('deleteVaultDoc');
+export const callRegisterTender    = call('registerTender');
+export const callParseTender       = call('parseTender');
+export const callMatchRequirements = call('matchRequirements');
+export const callConfirmRequirement = call('confirmRequirement');
+export const callIssueDownloadUrl  = call('issueDownloadUrl');
