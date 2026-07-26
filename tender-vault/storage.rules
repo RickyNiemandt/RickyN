@@ -2,15 +2,22 @@ rules_version = '2';
 
 // ============================================================
 // Tender Vault — Cloud Storage security rules
+// Every path is scoped to companies/{companyId}/... and requires
+// request.auth.token.companyId == companyId (custom claim).
+// Reads require membership; writes require membership.
 // ============================================================
-// SCAFFOLD PLACEHOLDER: default-deny.
-// Real rules scope every path to companies/{companyId}/... and require
-// request.auth.token.companyId == companyId. Implemented in the
-// "schema + rules" chunk once the security model is confirmed.
+
 service firebase.storage {
   match /b/{bucket}/o {
-    match /{allPaths=**} {
-      allow read, write: if false;
+    match /companies/{companyId}/{allPaths=**} {
+      // Members of the company may read any file in their company's path.
+      allow read: if request.auth != null &&
+                     request.auth.token.companyId == companyId;
+
+      // Members may upload vault docs and tenders (max 50 MB).
+      allow write: if request.auth != null &&
+                      request.auth.token.companyId == companyId &&
+                      request.resource.size <= 50 * 1024 * 1024;
     }
   }
 }
